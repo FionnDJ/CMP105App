@@ -11,6 +11,8 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, AudioManager* aud
 	audio = aud;
 
 	tileMap = new map0;
+
+	// Set game state to menu by default
 	gameState->setCurrentState(State::MENU);
 
 	// Set up menu textures
@@ -93,6 +95,7 @@ void Level::handleInput(float dt, Input& input) {
 // Update game objects
 void Level::update(float dt, Input& input) {
 
+	// Set game state depending events
 	switch (gameState->getCurrentState()) {
 	
 	case State::MENU:
@@ -114,9 +117,9 @@ void Level::update(float dt, Input& input) {
 			view.setCenter(view.getSize().x / 2.f, view.getSize().y / 2.f);
 		}
 
+		// Check if player has collided with bonfire
 		if (Collision::checkBoundingBox(&player, &bonfireSprite) && bonfireSprite.isCollider()) {
-			// Player collided with the flag
-			// Show the win screen
+			// Show the credits/win screen
 			gameState->setCurrentState(State::CREDITS);
 		}
 
@@ -138,21 +141,26 @@ void Level::update(float dt, Input& input) {
 		break;
 	}
 
+	// Set the view
 	window->setView(view);
 }
 
 // Render level
 void Level::render() {
 
+	// Switch what renders depending on game state
 	switch (gameState->getCurrentState()) {
 	case State::MENU:
+		
+		// Render the menu screen
 		beginDraw();
 		window->setView(view);
 		window->draw(menu);
 		endDraw();
 		break;
 	case State::LEVEL:
-
+		
+		// Render the level screen
 		beginDraw();
 		window->setView(view);
 
@@ -168,6 +176,8 @@ void Level::render() {
 		break;
 
 	case State::PAUSE:
+		
+		// Set the view and then render the pause screen
 		view.setCenter(view.getSize().x / 2.f, view.getSize().y / 2.f);
 		beginDraw();
 		window->setView(view);
@@ -175,6 +185,8 @@ void Level::render() {
 		endDraw();
 		break;
 	case State::CREDITS:
+
+		// Set the view and then render the credits/win screen
 		view.setCenter(view.getSize().x / 2.f, view.getSize().y / 2.f);
 		beginDraw();
 		window->setView(view);
@@ -185,5 +197,6 @@ void Level::render() {
 }
 
 Level::~Level() {
+	// Delete the tile map
 	delete tileMap;
 }

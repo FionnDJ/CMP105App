@@ -2,6 +2,8 @@
 
 // Bonfire
 bonfireSprite::bonfireSprite() {
+    
+    // Set up the bonfire animation frames
     bonfire.addFrame(sf::IntRect(0, 0, 55, 79));
     bonfire.addFrame(sf::IntRect(55, 0, 55, 79));
     bonfire.addFrame(sf::IntRect(110, 0, 55, 79));
@@ -33,6 +35,7 @@ bonfireSprite::bonfireSprite() {
 
 // Creatures
 slimeCreature::slimeCreature() {
+    // Set up the slime animation frames
 	slimeMove.addFrame(sf::IntRect(132, 12, 26, 12));
 	slimeMove.addFrame(sf::IntRect(164, 12, 26, 12));
 	slimeMove.addFrame(sf::IntRect(196, 12, 26, 12));
@@ -43,6 +46,7 @@ slimeCreature::slimeCreature() {
     currentAnimation = &slimeMove;
 }
 
+// Animate the bonfire
 void bonfireSprite::update(float dt) {
     bonfire.animate(dt);
     setTextureRect(bonfire.getCurrentFrame());
@@ -50,6 +54,7 @@ void bonfireSprite::update(float dt) {
     void update(float dt);
 }
 
+// Animate and move the slime
 void slimeCreature::update(float dt) {
     slimeMove.animate(dt);
     setTextureRect(slimeMove.getCurrentFrame());
@@ -64,10 +69,12 @@ void slimeCreature::update(float dt) {
 
     // Check the current direction, then move slime in accordance and flip the animation
     if (moveRight) {
+        // Right movement
         move(horizontalMovement, 0);
         currentAnimation->setFlipped(true);
     }
     else {
+        // Left movement
         move(-horizontalMovement, 0);
         currentAnimation->setFlipped(false);
         

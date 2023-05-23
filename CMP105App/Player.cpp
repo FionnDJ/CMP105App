@@ -55,9 +55,6 @@ void Player::update(float dt, Input& input) {
     // Setup horizontal acceleration
     const float accelerationX = 100.0f;
 
-    std::cout << "Player position: (" << getPosition().x << ", " << getPosition().y << ")" << std::endl;
-    std::cout << "Player velocity: (" << velocity.x << ", " << velocity.y << ")" << std::endl;
-
     sf::Vector2f acceleration;
     acceleration = sf::Vector2f(0, 150.0f);
 
@@ -100,7 +97,6 @@ void Player::handleInput(float dt, Input& input) {
     // Player movement up
     if (input.isKeyDown(sf::Keyboard::Space)) {
         velocity.y = -125.0f;
-        std::cout << "you have pressed space";
         grounded = false;
     }
 }
@@ -112,13 +108,6 @@ void Player::collisionDetection(GameObject* collider, map0* tileMap) {
     // Calculate player position post-collision
     float offsetX = playerBounds.left - tileBounds.left;
     float offsetY = playerBounds.top - tileBounds.top;
-
-    std::cout << "Overlap X: " << std::abs(offsetX) << std::endl;
-    std::cout << "Overlap Y: " << std::abs(offsetY) << std::endl;
-    std::cout << "Player position: (" << getPosition().x << ", " << getPosition().y << ")" << std::endl;
-    std::cout << "Player size: (" << getSize().x << ", " << getSize().y << ")" << std::endl;
-    std::cout << "Collider position: (" << collider->getPosition().x << ", " << collider->getPosition().y << ")" << std::endl;
-    std::cout << "Collider size: (" << collider->getSize().x << ", " << collider->getSize().y << ")" << std::endl;
 
     if (std::abs(offsetX) > std::abs(offsetY)) {
         // Adjust player position on the X axis
