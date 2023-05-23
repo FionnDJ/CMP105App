@@ -63,6 +63,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameEntities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
@@ -113,6 +116,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameEntities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

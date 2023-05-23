@@ -1,8 +1,7 @@
-#include "Player.h"
+#include "Framework/Collision.h"
 #include "Framework/VectorHelper.h"
 #include "Level.h"
-#include "Framework/Collision.h"
-
+#include "Player.h"
 
 Player::Player() : speed(20.f), grounded(false), isColliding(false) {
     
@@ -70,7 +69,6 @@ void Player::update(float dt, Input& input) {
         currentAnimation = &run;
         currentAnimation->setFlipped(true);
 
-        setTextureRect(currentAnimation->getCurrentFrame());
     } else if (input.isKeyDown(sf::Keyboard::D)) {
         acceleration.x += accelerationX;
 
@@ -78,7 +76,6 @@ void Player::update(float dt, Input& input) {
         currentAnimation = &run;
         currentAnimation->setFlipped(false);
 
-        setTextureRect(currentAnimation->getCurrentFrame());
     } else /* Animation for idle/no movement */ {
             currentAnimation = &idle;
             velocity.x = 0.0f;
@@ -165,6 +162,7 @@ void Player::collisionDetection(GameObject* collider, map0* tileMap) {
             break;
         }
     }
+
     grounded = hitGround;
 }
 

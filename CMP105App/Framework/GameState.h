@@ -5,10 +5,11 @@
 #pragma once
 
 // Possible states. This enum can be modified to add additional states as required.
-enum class State { MENU, LEVEL, PAUSE, CREDITS };
+enum class State {
+	MENU, LEVEL, PAUSE, CREDITS
+};
 
-class GameState
-{
+class GameState {
 public:
 	// Set the current state
 	void setCurrentState(State s);

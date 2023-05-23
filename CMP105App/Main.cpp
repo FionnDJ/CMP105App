@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "Level.h"
+#include "SFML/Audio.hpp"
 #include "Framework/AudioManager.h"
 #include "Framework/GameState.h"
 
@@ -64,10 +65,9 @@ void windowProcess(sf::RenderWindow* window, Input* in)
 	}
 }
 
-int main()
-{
+int main() {
 	//Create the window
-	sf::RenderWindow window(sf::VideoMode(1800, 900), "CMP105_Coursework");
+	sf::RenderWindow window(sf::VideoMode(1800, 900), "Just Looking to Pass LMAO");
 
 	// Initialise input and level objects.
 	AudioManager audioManager;
@@ -78,6 +78,16 @@ int main()
 	// Initialise objects for delta time
 	sf::Clock clock;
 	float deltaTime;
+
+	// Play background music
+	/* sf::Music backgroundMusic;
+	if (!backgroundMusic.openFromFile("sfx/02 - DavidKBD - Belmont Chronicles Pack - The Mystic Forest.ogg")) {
+		return -1; // error
+	}
+
+	backgroundMusic.play();
+	backgroundMusic.setLoop(true);
+	backgroundMusic.setVolume(25.f); */
 
 	// Game Loop
 	while (window.isOpen())
